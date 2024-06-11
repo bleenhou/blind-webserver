@@ -15,11 +15,7 @@
 	<packaging>jar</packaging>
 	<name>Blind webserver</name>
 	<description>Blind webserver</description>
-
-	<properties>
-		<java.version>17</java.version>
-	</properties>
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -32,15 +28,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<configuration>
-					<nonFilteredFileExtensions>
-						<nonFilteredFileExtension>jar</nonFilteredFileExtension>
-					</nonFilteredFileExtensions>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

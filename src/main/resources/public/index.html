@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+	<title>Haystack Web Interface</title>
+	<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+	<link rel="stylesheet" href="css/interface.css">
+	<style type="text/css" media="screen"></style>
+	<meta name="viewport" content="width=device-width,initial-scale=0.8,maximum-scale=0.8,user-scalable=no"/>
+</head>
+<body>
+	
+	<div class='height400'>
+		<div class='divBorder'>
+			<div id="editorConfig" class='editor'></div>
+		</div>
+	</div>
+	<div class='height400'>
+		<div class='divBorder'>
+			<div id="editorConsole" class='editor'></div>
+		</div>
+	</div>
+	<div class='height100'>
+		<div class='divBorder'>
+			<button type="button" id="requestExecution">Request execution</button>
+			<button type="button" id="allowExecution">Allow execution</button>
+			<input  type="text"   id="cipher" />
+		</div>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
+	<script src="js/console.js"></script>
+</body>
+</html>

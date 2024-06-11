@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -22,6 +21,10 @@ public class ExecutionController {
 	 * Data to show in console.
 	 */
 	private static final List<String> CONSOLE = new ArrayList<>();
+	static {
+		CONSOLE.add("Welcome to Blind webserver.");
+		CONSOLE.add("Please enter your setup above to start.");
+	}
 	
 	/**
 	 * Current running process.
@@ -37,23 +40,27 @@ public class ExecutionController {
 	 * Requests execution of a setup.
 	 */
 	@PostMapping("/requestExecution")
-	public void execute(@RequestBody ExecutionRequest request) throws Exception {
+	public void requestExecution(@RequestBody ExecutionRequest request) throws Exception {
 		ExecutionController.SETUP = request.setup;
-		CONSOLE.clear();
-		CONSOLE.add("New setup request received !");
+		CONSOLE.add("New setup request received, waiting for approval...");
 	}
 	
 	/**
 	 * Allows execution of current setup.
 	 */
 	@PostMapping("/allowExecution")
-	public void execute(@RequestParam String key) throws Exception {
+	public void allowExecution(@RequestBody ApprovalRequest request) throws Exception {
 		if (CURRENT_PROCESS != null) {
 			CURRENT_PROCESS.destroyForcibly();
 		}
-		CONSOLE.add("Setup allowed, starting...");
-		CURRENT_PROCESS = runSetup(SETUP, key);
-		inheritIO(CURRENT_PROCESS, s -> CONSOLE.add(s));
+		CONSOLE.add("Setup approved, starting...");
+		CURRENT_PROCESS = runSetup(SETUP, request.key);
+		inheritIO(CURRENT_PROCESS, s -> processLog(s));
+	}
+
+	private boolean processLog(String s) {
+		
+		return CONSOLE.add(s);
 	}
 	
 	/**

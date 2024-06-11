@@ -1,0 +1,42 @@
+body {
+	background-color: #202020;
+	font-size: 0.9em;
+    font-family: sans-serif;
+    color:white;
+    border:0px;
+    margin:4px;
+	float: left;
+	width:100%;
+}
+
+::-webkit-scrollbar { 
+    width: 0 !important
+}
+
+.height400{
+	width:100%;
+	height:400px;
+}
+
+.height100{
+	width:100%;
+	height:100px;
+}
+
+.editor {
+	width:100%;
+	height:370px;
+}
+
+.divBorder {
+	width:99%;
+	align:center;
+	margin:4px;
+	overflow:auto;
+	border: calc(8px + 0.2vw) solid transparent;
+	background-origin: border-box;
+	background-clip: content-box, border-box;
+	background-size: cover;
+	box-sizing: border-box;
+	box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
+}
