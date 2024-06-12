@@ -1,0 +1,14 @@
+grant {
+	// Required to use CUDA driver
+    permission java.io.FilePermission "<<ALL FILES>>", "read,write,execute,delete,readlink";
+    
+    // Required to fetch number of available processors
+    permission java.lang.RuntimePermission "*";
+    
+    // Required to run deciphered jar
+    permission java.lang.reflect.ReflectPermission "*";
+    permission java.net.NetPermission "specifyStreamHandler";    
+
+	// Required to fetch configuration parameters
+    permission java.util.PropertyPermission "*", "read";
+};

@@ -31,7 +31,7 @@ $("#requestExecution").click(function(e){
 		  url:'requestExecution',
 		  type: "POST",
 		  data: JSON.stringify({ 
-			  "config" : editorConfig.getValue(),
+			  "setup" : editorConfig.getValue(),
 		  }),
 		  contentType:"application/json; charset=utf-8",
 		  dataType:"json",

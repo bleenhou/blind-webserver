@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * Entry point for receiving an execution request and authorize it.
  */
@@ -58,9 +61,16 @@ public class ExecutionController {
 		inheritIO(CURRENT_PROCESS, s -> processLog(s));
 	}
 
-	private boolean processLog(String s) {
-		
-		return CONSOLE.add(s);
+	private void processLog(String s) {
+		try {
+			final JsonNode node = new ObjectMapper().readTree(s);
+			final JsonNode progress = node.get("progress");
+			if (progress != null) {
+				CONSOLE.add("progress : " + progress.asText());
+			}
+		} catch (Exception e) {
+			// silently discard node 
+		}
 	}
 	
 	/**
