@@ -1,5 +1,9 @@
 package blind.webserver.controller;
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -65,13 +69,16 @@ public class ExecutionController {
 		try {
 			final JsonNode node = new ObjectMapper().readTree(s);
 			final JsonNode progress = node.get("progress");
+			final JsonNode match = node.get("match");
+			if (match != null) {
+				final String m = new ObjectMapper().writeValueAsString(node);
+				Files.write(Paths.get("match.json"), m.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+				CONSOLE.add("match found ! Encrypted result has been written to disk !");
+			}
 			if (progress != null) {
 				CONSOLE.add("progress : " + progress.asText() + "%");
 			}
-			final JsonNode match = node.get("match");
-			if (match != null) {
-				CONSOLE.add("match : " + new ObjectMapper().writeValueAsString(match));
-			}
+
 		} catch (Exception e) {
 			// silently discard node 
 		}
