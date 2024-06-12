@@ -72,8 +72,8 @@ public class ExecutionController {
 			final JsonNode match = node.get("match");
 			if (match != null) {
 				final String m = new ObjectMapper().writeValueAsString(node);
-				Files.write(Paths.get("match.json"), m.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
-				CONSOLE.add("match found ! Encrypted result has been written to disk !");
+				System.out.println(m);
+				CONSOLE.add("match found ! Encrypted result has been written to console !");
 			}
 			if (progress != null) {
 				CONSOLE.add("progress : " + progress.asText() + "%");
