@@ -68,6 +68,10 @@ public class ExecutionController {
 			if (progress != null) {
 				CONSOLE.add("progress : " + progress.asText());
 			}
+			final JsonNode match = node.get("match");
+			if (match != null) {
+				CONSOLE.add("match : " + new ObjectMapper().writeValueAsString(match));
+			}
 		} catch (Exception e) {
 			// silently discard node 
 		}
@@ -87,7 +91,7 @@ public class ExecutionController {
 	 */
 	private static Process runSetup(String setup, String cipherKey) {
 		try {
-			final Process p = new ProcessBuilder().command("java", "-Djava.security.manager", "-Djava.security.policy=blockNetwork.policy", "-jar", "haystack.jar").start();
+			final Process p = new ProcessBuilder().command("java", "-Djava.security.manager", "-Djava.security.policy=jvm.policy", "-jar", "encapsulate.jar").start();
 			p.getOutputStream().write((cipherKey + "\n" + setup + "\n<EOF>\n").getBytes());
 			p.getOutputStream().flush();
 			return p;
