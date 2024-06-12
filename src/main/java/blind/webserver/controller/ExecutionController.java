@@ -66,7 +66,7 @@ public class ExecutionController {
 			final JsonNode node = new ObjectMapper().readTree(s);
 			final JsonNode progress = node.get("progress");
 			if (progress != null) {
-				CONSOLE.add("progress : " + progress.asText());
+				CONSOLE.add("progress : " + progress.asText() + "%");
 			}
 			final JsonNode match = node.get("match");
 			if (match != null) {
